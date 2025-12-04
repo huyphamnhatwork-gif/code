@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homepage - TAILIEUTX1</title>
   <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style-mobile.css">
+
+  
   <style>
     /* ===== Reset cơ bản ===== */
     * {
@@ -30,7 +33,7 @@
     /* ===== Header ===== */
     header {
       background: linear-gradient(90deg, #f472b6, #ec4899, #8b5cf6);
-      padding: 0px 100px;
+      padding: 0px 200px;
       color: white;
       display: flex;
       justify-content: space-between;
@@ -164,6 +167,9 @@
       color: #fff;
       border: none;
       border-radius: 15px;
+      font-size: 2rem;
+      margin-top: 10px;
+      margin-bottom: -20px;
     }
 
     /* ===== Categories ===== */
@@ -263,10 +269,13 @@
       <p>
         Tài liệu TX1 chuyên chia sẻ tài liệu đại cương, cơ sở ngành, chuyên ngành, tiếng anh và phần mềm miễn phí dành cho sinh viên ngành Công nghệ Dệt may. Tuy nhiên, mình đã ra trường và kiến thức cũng thay đổi rất nhiều rồi, nên mong các bạn có tài liệu nào hay thì cho mình xin nhé.
       </p>
-      <div class="search-bar">
-        <input type="text" placeholder="Tìm kiếm tài liệu...">
-        <button>Tìm kiếm</button>
+      <div class="search-bar" style="position: relative;">
+        <input type="text" placeholder="Tìm kiếm tài liệu..." id="searchInput">
+        <button id="searchBtn">Tìm kiếm</button>
+        <div id="suggestions" class="suggestions"></div> <!-- bắt buộc phải ở đây -->
       </div>
+      
+
       <button class="btn-donggop">Đóng góp tài liệu →</button>
     </div>
   </section>
@@ -300,4 +309,128 @@
     });
   </script>
 </body>
+<style>
+  .suggestions {
+  position: absolute;
+  top: 100%;
+  left: 189px;
+  width: 68%;
+  background-color: #030000;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 50px 70px rgba(0,0,0,0.15);
+  z-index: 100;
+  display: none;
+  overflow: hidden;
+  font-size: 2rem;
+}
+
+.suggestions div {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.suggestions div:hover {
+  background-color: #f0f0f0;
+}
+
+.highlight {
+  background-color: #df14ba; /* vàng sáng, đẹp hơn */
+  font-weight: bold;
+}
+
+</style>
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+const suggestionsDiv = document.getElementById('suggestions');
+
+// Bảng từ khóa → trang
+const searchMap = [
+  { keywords: ["đại số tuyến tính"], page: "toancaocap.html" },
+  { keywords: ["vật lý đại cương", "cơ học"], page: "daicuong.html" },
+  { keywords: ["thiết kế thời trang"], page: "chuyennganh.html" },
+  { keywords: ["tiếng anh cơ bản"], page: "tienganh.html" },
+  { keywords: ["phần mềm may mặc"], page: "phanmem.html" },
+  { keywords: ["từ điển kỹ thuật"], page: "tudien.html" }
+];
+
+// Tìm các gợi ý khớp 1 phần với input
+function getSuggestions(query) {
+  query = query.toLowerCase();
+  const results = [];
+  for (let item of searchMap) {
+    for (let kw of item.keywords) {
+      if (kw.toLowerCase().includes(query) && !results.some(r => r.keyword === kw)) {
+        results.push({ keyword: kw, page: item.page });
+      }
+    }
+  }
+  return results;
+}
+
+// Highlight phần chữ khớp
+function highlightMatch(text, query) {
+  const regex = new RegExp(`(${query})`, "gi");
+  return text.replace(regex, '<span class="highlight">$1</span>');
+}
+
+// Hiển thị gợi ý khi gõ
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.trim();
+  if (!query) {
+    suggestionsDiv.style.display = 'none';
+    return;
+  }
+
+  const results = getSuggestions(query);
+  if (results.length === 0) {
+    suggestionsDiv.style.display = 'none';
+    return;
+  }
+
+  suggestionsDiv.innerHTML = '';
+  results.forEach(r => {
+    const div = document.createElement('div');
+    div.innerHTML = highlightMatch(r.keyword, query); // highlight
+    div.addEventListener('click', () => {
+      window.location.href = r.page;
+    });
+    suggestionsDiv.appendChild(div);
+  });
+
+  suggestionsDiv.style.display = 'block';
+});
+
+// Nhấn tìm kiếm hoặc Enter
+function handleSearch() {
+  const query = searchInput.value.trim().toLowerCase();
+  if (!query) {
+    alert("Vui lòng nhập từ khóa tìm kiếm!");
+    return;
+  }
+
+  const match = searchMap.find(item => item.keywords.some(kw => kw.toLowerCase() === query));
+  if (match) {
+    window.location.href = match.page;
+  } else {
+    alert("Không tìm thấy kết quả phù hợp!");
+  }
+}
+
+searchBtn.addEventListener('click', handleSearch);
+searchInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') handleSearch();
+});
+
+// Ẩn gợi ý khi click ra ngoài
+document.addEventListener('click', (e) => {
+  if (!searchInput.contains(e.target) && !suggestionsDiv.contains(e.target)) {
+    suggestionsDiv.style.display = 'none';
+  }
+});
+</script>
+
 </html>
