@@ -119,6 +119,35 @@
     }
   </style>
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const highlight = params.get("highlight");
+  if (!highlight) return;
+
+  const cards = document.querySelectorAll(".doc-card");
+
+  cards.forEach(card => {
+    const titleElement = card.querySelector(".doc-title");
+
+    if (titleElement && titleElement.innerText.toLowerCase().includes(highlight.toLowerCase())) {
+
+      // Cuộn vào giữa màn hình
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // Thêm hiệu ứng nhấp nháy
+      card.classList.add("card-highlight");
+
+      // Tự tắt sau 4 giây
+      setTimeout(() => {
+        card.classList.remove("card-highlight");
+      }, 4000);
+    }
+  });
+});
+</script>
+
+<script src="highlight.js"></script>
 <body>
 
 <!-- Header -->
@@ -144,15 +173,81 @@
 </header>
   <!-- Main Content -->
   <main>
-    <h1 class="page-title">Tài liệu Toán cao cấp</h1>
+    <h1 class="page-title">Tài liệu các môn Vật liệu và công nghệ hoàn tất sản phẩm dệt may</h1>
+
+        <div class="doc-card">
+      <div class="doc-info">
+        <div class="doc-title">CH3071 Hóa lý</div>
+        <div class="doc-desc">Tổng hợp đề thi và đáp án có lời giải chi tiết</div>
+        <div class="doc-size">15.2 MB</div>
+      </div>
+      <a href="#" class="download-btn" download>
+        Tải về
+      </a>
+    </div>
 
     <div class="doc-card">
       <div class="doc-info">
-        <div class="doc-title">Đại số tuyến tính</div>
-        <div class="doc-desc">Tài liệu đầy đủ về ma trận, định thức, không gian vector</div>
-        <div class="doc-size">12.5 MB</div>
+        <div class="doc-title">TEX4023 Hóa học thực phẩm</div>
+        <div class="doc-desc">Công nghệ và thiết bị sản phẩm dệt</div>
+        <div class="doc-size">18.7 MB</div>
       </div>
-      <a href="https://drive.google.com/drive/u/0/folders/189BDmMh5j7NivzqTl6KDIqk2MnG1GZ4J" class="download-btn" download>
+      <a href="#" class="download-btn" download>
+        Tải về
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-info">
+        <div class="doc-title">TEX4463 Công nghệ và thiết bị sản phẩm dệt</div>
+        <div class="doc-desc">Phân tích thành phần hoá học vải liệu dệt may</div>
+        <div class="doc-size">22.4 MB</div>
+      </div>
+      <a href="#" class="download-btn" download>
+        Tải về
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-info">
+        <div class="doc-title">TEX4523 Phân tích thành phần hoá học vải liệu dệt may</div>
+        <div class="doc-desc">Công nghệ và thiết bị nhuộm – in hoàn tất sản phẩm dệt may</div>
+        <div class="doc-size">19.8 MB</div>
+      </div>
+      <a href="#" class="download-btn" download>
+        Tải về
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-info">
+        <div class="doc-title">TEX4473 Công nghệ và thiết bị nhuộm – in hoàn tất sản phẩm dệt may</div>
+        <div class="doc-desc">Thực hành công nghệ nhuộm – in hoàn tất sản phẩm dệt may</div>
+        <div class="doc-size">17.6 MB</div>
+      </div>
+      <a href="#" class="download-btn" download>
+        Tải về
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-info">
+        <div class="doc-title">TEX4513 Thực hành công nghệ nhuộm – in hoàn tất sản phẩm dệt may</div>
+        <div class="doc-desc">Kiểm soát chất lượng sản phẩm nhuộm và hoàn tất</div>
+        <div class="doc-size">14.3 MB</div>
+      </div>
+      <a href="#" class="download-btn" download>
+        Tải về
+      </a>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-info">
+        <div class="doc-title">TEX5253 Kiểm soát chất lượng sản phẩm nhuộm và hoàn tất</div>
+        <div class="doc-desc">Tổng hợp tài liệu môn học đầy đủ nhất</div>
+        <div class="doc-size">21.9 MB</div>
+      </div>
+      <a href="#" class="download-btn" download>
         Tải về
       </a>
     </div>

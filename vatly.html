@@ -119,6 +119,35 @@
     }
   </style>
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const highlight = params.get("highlight");
+  if (!highlight) return;
+
+  const cards = document.querySelectorAll(".doc-card");
+
+  cards.forEach(card => {
+    const titleElement = card.querySelector(".doc-title");
+
+    if (titleElement && titleElement.innerText.toLowerCase().includes(highlight.toLowerCase())) {
+
+      // Cuộn vào giữa màn hình
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // Thêm hiệu ứng nhấp nháy
+      card.classList.add("card-highlight");
+
+      // Tự tắt sau 4 giây
+      setTimeout(() => {
+        card.classList.remove("card-highlight");
+      }, 4000);
+    }
+  });
+});
+</script>
+
+<script src="highlight.js"></script>
 <body>
 
 <!-- Header -->
@@ -148,7 +177,7 @@
 
     <div class="doc-card">
       <div class="doc-info">
-        <div class="doc-title">Vật lý đại cương 1</div>
+        <div class="doc-title">PH1111 Vật lý đại cương 1</div>
         <div class="doc-desc">Tài liệu đầy đủ về ma trận, định thức, không gian vector</div>
         <div class="doc-size">12.5 MB</div>
       </div>
@@ -159,7 +188,7 @@
 
     <div class="doc-card">
       <div class="doc-info">
-        <div class="doc-title">Vật lý đại cương 2</div>
+        <div class="doc-title">PH1121 Vật lý đại cương 2</div>
         <div class="doc-desc">Tổng hợp bài tập từ cơ bản đến nâng cao</div>
         <div class="doc-size">8.3 MB</div>
       </div>
@@ -170,7 +199,7 @@
 
     <div class="doc-card">
       <div class="doc-info">
-        <div class="doc-title">Vật lý đại cương 3</div>
+        <div class="doc-title">PH1131 Vật lý đại cương 3</div>
         <div class="doc-desc">Lý thuyết giới hạn, đạo hàm, tích phân</div>
         <div class="doc-size">15.2 MB</div>
       </div>

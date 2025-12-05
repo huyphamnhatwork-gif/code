@@ -102,6 +102,35 @@
     }
   </style>
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const highlight = params.get("highlight");
+  if (!highlight) return;
+
+  const cards = document.querySelectorAll(".doc-card");
+
+  cards.forEach(card => {
+    const titleElement = card.querySelector(".doc-title");
+
+    if (titleElement && titleElement.innerText.toLowerCase().includes(highlight.toLowerCase())) {
+
+      // Cuộn vào giữa màn hình
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // Thêm hiệu ứng nhấp nháy
+      card.classList.add("card-highlight");
+
+      // Tự tắt sau 4 giây
+      setTimeout(() => {
+        card.classList.remove("card-highlight");
+      }, 4000);
+    }
+  });
+});
+</script>
+
+<script src="highlight.js"></script>
 <body>
 
 <!-- Header -->
@@ -133,9 +162,22 @@
 
     <!-- Subjects List -->
     <div class="subject-card">
-      <span class="subject-title">Cơ sở ngành học chung</span>
-      <a href="cosonganh.html" class="subject-button">Xem →</a>
+      <span class="subject-title">Cơ sở và cốt lõi ngành chung</span>
+      <a href="cosonganhchung.html" class="subject-button">Xem →</a>
     </div>
+
+       <div class="subject-card">
+      <span class="subject-title">Cơ sở và cốt lõi ngành Khối Dệt</span>
+      <a href="cosonganhkhoidet.html" class="subject-button">Xem →</a>
+    </div>
+    
+        <div class="subject-card">
+      <span class="subject-title">Cơ sở và cốt lõi ngành Khối May</span>
+      <a href="cosonganhkhoimay.html" class="subject-button">Xem →</a>
+    </div>
+    
+
+
     <div class="subject-card">
       <span class="subject-title">Thiết kế vải dệt may</span>
       <a href="thietkevaidetmay.html" class="subject-button">Xem →</a>
@@ -153,7 +195,7 @@
 
     <div class="subject-card">
       <span class="subject-title">Thiết kế thời trang và da giày</span>
-      <a href="thietkethoitrangvadagiay.html" class="subject-button">Xem →</a>
+      <a href="thietkethoitrangvadagiay.html.html" class="subject-button">Xem →</a>
     </div>
 
     <div class="subject-card">

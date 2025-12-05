@@ -102,6 +102,35 @@
     }
   </style>
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const highlight = params.get("highlight");
+  if (!highlight) return;
+
+  const cards = document.querySelectorAll(".doc-card");
+
+  cards.forEach(card => {
+    const titleElement = card.querySelector(".doc-title");
+
+    if (titleElement && titleElement.innerText.toLowerCase().includes(highlight.toLowerCase())) {
+
+      // Cuộn vào giữa màn hình
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // Thêm hiệu ứng nhấp nháy
+      card.classList.add("card-highlight");
+
+      // Tự tắt sau 4 giây
+      setTimeout(() => {
+        card.classList.remove("card-highlight");
+      }, 4000);
+    }
+  });
+});
+</script>
+
+<script src="highlight.js"></script>
 <body>
 
  <!-- Header -->
@@ -147,8 +176,6 @@
       <a href="hoahoc.html" class="subject-button">Xem →</a>
     </div>
 
-
-
     <div class="subject-card">
       <span class="subject-title">Tài liệu các môn Triết</span>
       <a href="triet.html" class="subject-button">Xem →</a>
@@ -159,11 +186,9 @@
       <a href="botro.html" class="subject-button">Xem →</a>
     </div>
 
+  
     <div class="subject-card">
-      <span class="subject-title">Tài liệu các môn Cơ khí</span>
-      <a href="cokhi.html" class="subject-button">Xem →</a>
-    </div>
-    <div class="subject-card">
+      
       <span class="subject-title">Tài liệu môn Tin học đại cương</span>
       <a href="tinhoc.html" class="subject-button">Xem →</a>
     </div>

@@ -237,6 +237,35 @@
     }
   </style>
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const highlight = params.get("highlight");
+  if (!highlight) return;
+
+  const cards = document.querySelectorAll(".doc-card");
+
+  cards.forEach(card => {
+    const titleElement = card.querySelector(".doc-title");
+
+    if (titleElement && titleElement.innerText.toLowerCase().includes(highlight.toLowerCase())) {
+
+      // Cuộn vào giữa màn hình
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // Thêm hiệu ứng nhấp nháy
+      card.classList.add("card-highlight");
+
+      // Tự tắt sau 4 giây
+      setTimeout(() => {
+        card.classList.remove("card-highlight");
+      }, 4000);
+    }
+  });
+});
+</script>
+
+<script src="highlight.js"></script>
 <body>
 
  <!-- Header -->
@@ -276,23 +305,63 @@
       </div>
       
 
-      <button class="btn-donggop">Đóng góp tài liệu →</button>
+      <button class="btn-donggop" onclick="window.location.href='https://husteduvn-my.sharepoint.com/:f:/g/personal/huy_pn252241m_sis_hust_edu_vn/IgAQ0EfyXCBPTbwJ7v_GnZtYAYM5IFibeeKANyjRFAc9AmU?e=vjZcmS'">
+  Đóng góp tài liệu →
+</button>
+
+
     </div>
   </section>
 
-  <!-- Categories Section -->
-  <main>
-    <section class="categories">
-      <div class="categories-header">Tài liệu chuyên ngành</div>
-      <ul>
-        <li><a href="#">Thiết kế vải dệt may</a></li>
-        <li><a href="#">Công nghệ sản xuất sản phẩm dệt</a></li>
-        <li><a href="#">Vật liệu và công nghệ hoàn tất sản phẩm dệt may</a></li>
-        <li><a href="#">Thiết kế thời trang và da giày</a></li>
-        <li><a href="#">Công nghệ may</a></li>
-      </ul>
-    </section>
-  </main>
+<!-- Comment Section -->
+<section class="comment-section">
+  <h2>Hòm thư góp ý</h2>
+  <p>Your email address will not be published. Required fields are marked *</p>
+
+  <form id="feedbackForm" class="comment-form" action="https://formspree.io/f/mwpgqnwy" method="POST">
+    <label for="content">Nội dung góp ý *</label>
+    <textarea id="content" name="content" placeholder="Bạn muốn góp ý điều gì?" required></textarea>
+
+    <button class="post-comment" type="submit">POST COMMENT</button>
+  </form>
+
+  <p id="status" style="margin-top:10px; font-weight:bold;"></p>
+</section>
+<script>
+document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // ❗ Không cho reload / chuyển trang
+
+    const form = e.target;
+    const status = document.getElementById("status");
+
+    // Lấy dữ liệu form
+    const data = new FormData(form);
+
+    // Gửi bằng fetch API (AJAX)
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: data,
+            headers: {
+                "Accept": "application/json"
+            }
+        });
+
+        if (response.ok) {
+            status.innerHTML = "✔ Gửi góp ý thành công! Cảm ơn bạn ❤️";
+            form.reset(); // Xoá nội dung
+        } else {
+            status.innerHTML = "❌ Gửi thất bại. Vui lòng thử lại.";
+        }
+    } catch (error) {
+        status.innerHTML = "❌ Có lỗi khi gửi.";
+    }
+});
+</script>
+
+
+
+
 
   <!-- Footer -->
   <footer class="footer">
@@ -349,12 +418,110 @@ const suggestionsDiv = document.getElementById('suggestions');
 
 // Bảng từ khóa → trang
 const searchMap = [
-  { keywords: ["đại số tuyến tính"], page: "toancaocap.html" },
-  { keywords: ["vật lý đại cương", "cơ học"], page: "daicuong.html" },
-  { keywords: ["thiết kế thời trang"], page: "chuyennganh.html" },
-  { keywords: ["tiếng anh cơ bản"], page: "tienganh.html" },
-  { keywords: ["phần mềm may mặc"], page: "phanmem.html" },
-  { keywords: ["từ điển kỹ thuật"], page: "tudien.html" }
+  // triết học
+  { keywords: ["EM1170 Pháp luật đại cương"], page: "triet.html" },
+  { keywords: ["SSH1111 Triết học Mác-Lênin"], page: "triet.html" },
+  { keywords: ["SSH1121 Kinh tế chính trị"], page: "triet.html" },
+  { keywords: ["SSH1131 Chủ nghĩa xã hội khoa học"], page: "triet.html" },
+  { keywords: ["SSH1141 Lịch sử Đảng"], page: "triet.html" },
+  { keywords: ["SSH1151 Tư tưởng Hồ Chí Minh"], page: "triet.html" },
+// toán, lý, tin 
+  { keywords: ["MI1142 Đại số tuyến tính"], page: "toancaocap.html" },
+  { keywords: ["MI1112 Giải tích 1"], page: "toancaocap.html" },
+  { keywords: ["MI1122 Giải tích 2"], page: "toancaocap.html" },
+  { keywords: ["MI1132 Giải tích 3"], page: "toancaocap.html" },
+  { keywords: ["MI2021 Xác suất thống kê"], page: "toancaocap.html" },
+  { keywords: ["MI2010 Phương pháp tính"], page: "toancaocap.html" },
+
+  { keywords: ["PH1111 Vật lý đại cương 1"], page: "vatly.html" },
+  { keywords: ["PH1121 Vật lý đại cương 2"], page: "vatly.html" },
+  { keywords: ["PH1131 Vật lý đại cương 3"], page: "vatly.html" },
+
+  { keywords: ["IT1140 Tin học đại cương"], page: "tinhoc.html" },
+
+  { keywords: ["CH1017 Hóa học"], page: "hoahoc.html" },
+  { keywords: ["CH3223 Hóa hữu cơ"], page: "hoahoc.html" },
+// cơ so và cốt lõi ngành chung 
+
+// cơ sở ngành học chung
+  { keywords: ["EE2012 Kỹ thuật điện"], page: "cosonganhchung.html" },
+  { keywords: ["ME2015 Đồ họa kỹ thuật cơ bản"], page: "cosonganhchung.html" },
+  { keywords: ["HE2012 Kỹ thuật nhiệt"], page: "cosonganhchung.html" },
+  { keywords: ["ME3211 Nguyên lý máy"], page: "cosonganhchung.html" },
+  { keywords: ["TEX3090 Cơ sở mỹ thuật sản phẩm dệt may"], page: "cosonganhchung.html" },
+  { keywords: ["TEX3180 Cấu trúc vải sợi"], page: "cosonganhchung.html" },
+  { keywords: ["TEX3140 Tiếng anh chuyên ngành dệt may"], page: "cosonganhchung.html" },
+  { keywords: ["TEX3131 Quản lý chất lượng dệt may"], page: "cosonganhchung.html" },
+  { keywords: ["TEX3010 Quản lý sản xuất dệt may"], page: "cosonganhchung.html" },
+  { keywords: ["TEX3141 Cơ sở xử lý hóa học sản phẩm dệt may"], page: "cosonganhchung.html" },
+  { keywords: ["TEX3161 Thực hành sợi, vải"], page: "cosonganhchung.html" },
+  { keywords: ["TEX3030 Marketing dệt may"], page: "cosonganhchung.html" },
+  { keywords: ["TEX3060 Thực hành kiểm tra và phân tích vật liệu dệt may"], page: "cosonganhchung.html" },
+  { keywords: ["TEX3150 Vật liệu dệt may"], page: "cosonganhchung.html" },
+
+// cơ sở ngành khối may
+
+  { keywords: ["TEX4352 Thực hành may cơ bản"], page: "cosonganhkhoimay.html" },
+  { keywords: ["TEX4372 Thực hành may nâng cao"], page: "cosonganhkhoimay.html" },
+  { keywords: ["TEX4502 Công nghệ gia công sản phẩm may"], page: "cosonganhkhoimay.html" },
+  { keywords: ["TEX4382 Thiết kế trang phục"], page: "cosonganhkhoimay.html" },
+  { keywords: ["TEX4462 Thực hành thiết kế trang phục"], page: "cosonganhkhoimay.html" },
+
+
+  { keywords: ["TEX4851 Công nghệ kéo xơ sợi ngắn"], page: "cosonganhkhoidet.html" },
+  { keywords: ["TEX4591 Công nghệ dệt kim cơ bản"], page: "cosonganhkhoidet.html" },
+  { keywords: ["TEX4503 Khoa học màu sắc"], page: "cosonganhkhoidet.html" },
+  { keywords: ["TEX4601 CÔng nghệ dệt thoi I"], page: "cosonganhkhoidet.html" },
+  { keywords: ["TEX3070 An toàn lao động và môi trường dệt may"], page: "cosonganhkhoidet.html" },
+  { keywords: ["TEX4432 Hệ thống công nghệ và quá trình may"], page: "cosonganhkhoidet.html" },
+
+// công nghệ sản xuất sản phẩm dệt
+
+  { keywords: ["TEX4471 Công nghệ không dệt"], page: "congnhesanxuatsanphamdet.html" },
+  { keywords: ["TEX4611 Công nghệ dệt thoi II"], page: "congnhesanxuatsanphamdet.html" },
+  { keywords: ["TEX4451 Kỹ thuật dệt kim hoa"], page: "congnhesanxuatsanphamdet.html" },
+  { keywords: ["TEX4621 Công nghệ kéo sợi xơ dài"], page: "congnhesanxuatsanphamdet.html" },
+  { keywords: ["TEX4631 Thiết kế dây chuyền sợi dệt"], page: "congnhesanxuatsanphamdet.html" },
+  { keywords: ["TEX4551 Thực hành dệt 1"], page: "congnhesanxuatsanphamdet.html" },
+  { keywords: ["TEX641 Cấu trúc sợi"], page: "congnhesanxuatsanphamdet.html" },
+  { keywords: ["TEX3081 Cấu trúc vải dệt thoi"], page: "congnhesanxuatsanphamdet.html" },
+  { keywords: ["TEX3091 Cấu trúc vải dệt kim"], page: "congnhesanxuatsanphamdet.html" },
+
+  // công nghệ may
+  { keywords: ["TEX4332 Thiết bị may công nghiệp"], page: "congnhemay.html" },
+  { keywords: ["TEX4442 Công nghệ sản xuất sản phẩm may"], page: "congnhemay.html" },
+  { keywords: ["TEX4422 Thiết kế dây chuyền may"], page: "congnhemay.html" },
+  { keywords: ["TEX4002 Thiết kế công nghệ quá trình sản phẩm may"], page: "congnhemay.html" },
+  { keywords: ["TEX4282 Thiết kế mẫu sản xuất"], page: "congnhemay.html" },
+  { keywords: ["TEX4272 Thiết kế sản phẩm may theo đơn hàng"], page: "congnhemay.html" },
+  { keywords: ["TEX4512 Ứng dụng công nghệ thông tin trong công nghiệp may"], page: "congnhemay.html" },
+// hóa dệt
+  { keywords: ["CH3071 Hóa lý"], page: "vatlieuvacongnghehoantat.html" },
+  { keywords: ["TEX4023 Hóa học thực phẩm"], page: "vatlieuvacongnghehoantat.html" },
+  { keywords: ["TEX4463 Công nghệ và thiết bị sản phẩm dệt"], page: "vatlieuvacongnghehoantat.html" },
+  { keywords: ["TEX4523 Phân tích thành phần hoá học vải liệu dệt may"], page: "vatlieuvacongnghehoantat.html" },
+  { keywords: ["TEX4473 Công nghệ và thiết bị nhuộm – in hoàn tất sản phẩm dệt may"], page: "vatlieuvacongnghehoantat.html" },
+  { keywords: ["TEX4513 Thực hành công nghệ nhuộm – in hoàn tất sản phẩm dệt may"], page: "vatlieuvacongnghehoantat.html" },
+  { keywords: ["TEX5253 Kiểm soát chất lượng sản phẩm nhuộm và hoàn tất"], page: "vatlieuvacongnghehoantat.html" },
+
+  { keywords: ["TEX4455 Hình họa thời trang"], page: "thietkethoitrangvadagiay.html" },
+  { keywords: ["TEX4465 Thiết kế mỹ thuật trang phục"], page: "thietkethoitrangvadagiay.html" },
+  { keywords: ["TEX4475 Tin học ứng dụng trong thiết kế mỹ thuật trang phục"], page: "thietkethoitrangvadagiay.html" },
+  { keywords: ["TEX4125 Tại màu trên trang phục may sẵn"], page: "thietkethoitrangvadagiay.html" },
+  { keywords: ["TEX4445 Phần mềm ứng dụng trong thiết kế thời trang"], page: "thietkethoitrangvadagiay.html" },
+  { keywords: ["TEX4485 Thiết kế bộ sưu tập thời trang"], page: "thietkethoitrangvadagiay.html" },
+  { keywords: ["TEX4525 Thiết kế sản phẩm thời trang giá y"], page: "thietkethoitrangvadagiay.html" },
+  { keywords: ["TEX4515 Thiết kế và công nghệ sản phẩm áo dài"], page: "thietkethoitrangvadagiay.html" },
+
+  { keywords: ["TEX4382 Thiết kế trang phục"], page: "thietkevaidetmay.html" },
+  { keywords: ["TEX4016 Thiết kế sản phẩm sơ mi"], page: "thietkevaidetmay.html" },
+  { keywords: ["TEX4026 Thiết kế vải dệt thoi đơn giản"], page: "thietkevaidetmay.html" },
+  { keywords: ["TEX4116 Thiết kế sản phẩm vest dệt kim"], page: "thietkevaidetmay.html" },
+  { keywords: ["TEX4106 Thực hành phần tử và thiết kế vải I"], page: "thietkevaidetmay.html" },
+  { keywords: ["TEX4066 Nguyên lý tạo mẫu sản phẩm dệt may"], page: "thietkevaidetmay.html" },
+  { keywords: ["TEX4076 Phần mềm ứng dụng trong thiết kế vải"], page: "thietkevaidetmay.html" },
+  { keywords: ["TEX4086 Thực hành tạo mẫu sản phẩm dệt may"], page: "thietkevaidetmay.html" },
+  { keywords: ["TEX4096 Tín học ứng dụng trong thiết kế vải"], page: "thietkevaidetmay.html" },
 ];
 
 // Tìm các gợi ý khớp 1 phần với input
@@ -396,7 +563,7 @@ searchInput.addEventListener('input', () => {
     const div = document.createElement('div');
     div.innerHTML = highlightMatch(r.keyword, query); // highlight
     div.addEventListener('click', () => {
-      window.location.href = r.page;
+      window.location.href = `${r.page}?highlight=${encodeURIComponent(r.keyword)}`;
     });
     suggestionsDiv.appendChild(div);
   });
