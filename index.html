@@ -305,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
       
 
-      <button class="btn-donggop" onclick="window.location.href='https://husteduvn-my.sharepoint.com/:f:/g/personal/huy_pn252241m_sis_hust_edu_vn/IgAQ0EfyXCBPTbwJ7v_GnZtYAYM5IFibeeKANyjRFAc9AmU?e=vjZcmS'">
+      <button class="btn-donggop" onclick="window.location.href=https://drive.google.com/drive/folders/1TTlAS8UO6iCVI7C5nVIpS9qz3DPvR1tD'">
   Đóng góp tài liệu →
 </button>
 
@@ -598,6 +598,31 @@ document.addEventListener('click', (e) => {
     suggestionsDiv.style.display = 'none';
   }
 });
+
+// ======= Xử lý ENTER để chuyển tới trang gần đúng nhất =======
+searchInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault(); // tránh reload
+
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) return;
+
+    // Lấy danh sách gợi ý phù hợp
+    const suggestions = getSuggestions(query);
+
+    if (suggestions.length > 0) {
+      // Lấy gợi ý khớp nhất (gợi ý đầu tiên)
+      const bestMatch = suggestions[0];
+
+      // Chuyển trang
+      window.location.href = `${bestMatch.page}?highlight=${encodeURIComponent(bestMatch.keyword)}`;
+    } else {
+      alert("❌ Không tìm thấy tài liệu phù hợp!");
+    }
+  }
+});
+
 </script>
+
 
 </html>
