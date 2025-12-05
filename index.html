@@ -3,418 +3,410 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Homepage - TAILIEUTX1</title>
-  <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="style-mobile.css">
+  <title>TAILIEUTX1 - Tài liệu Công nghệ Dệt May</title>
+  <meta name="description" content="Tài liệu đại cương, chuyên ngành, tiếng Anh, phần mềm miễn phí dành cho sinh viên ngành Công nghệ Dệt May - TAILIEUTX1">
 
-  
   <style>
-    /* ===== Reset cơ bản ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* ====================== RESET & ROOT ====================== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.5;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    /* ===== Header ===== */
-    header {
-      background: linear-gradient(90deg, #f472b6, #ec4899, #8b5cf6);
-      padding: 0px 200px;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    header h1 {
-      margin: 0;
-      cursor: pointer;
-    }
-
-    nav a {
-      margin-left: 15px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    h1.page-title {
-      text-align: center;
-      color: #be185d;
-      margin-bottom: 30px;
-    }
-
-    .subject-card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .subject-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-
-    .subject-title {
-      font-size: 18px;
-      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      background: #fff;
       color: #333;
     }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; }
 
-    .subject-button {
-      background: #f472b6;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      text-decoration: none;
+    /* ====================== HEADER (DUY NHẤT - ĐẸP NHẤT) ====================== */
+    header {
+      background: linear-gradient(90deg, #d60ca4, #cd099c);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
-
-    .subject-button:hover {
-      background: #ec4899;
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo a {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    .nav {
+      display: flex;
+      gap: 12px;
+    }
+    .nav a {
+      width: 140px;
+      height: 48px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .nav a:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-3px);
     }
     .mobile-menu {
       display: none;
-      font-size: 1.5rem;
       background: none;
-      border: none;
       color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
     }
 
-    /* ===== Banner ===== */
+    /* ====================== MOBILE MENU ====================== */
+    @media (max-width: 768px) {
+      .mobile-menu { display: block; }
+      .nav {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: linear-gradient(90deg, #d60ca4, #cd099c);
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        height: calc(100vh - 70px);
+        overflow-y: auto;
+      }
+      .nav.nav-active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      .nav a {
+        width: 100%;
+        height: 60px;
+        font-size: 1.2rem;
+      }
+    }
+
+    /* ====================== BANNER ====================== */
     #banner {
-      background-color: #f5f5f5;
+      background: linear-gradient(to right, #f472b6, #ec4899);
+      color: #fff;
       text-align: center;
       padding: 40px 20px;
     }
-
     .banner-content h1 {
-      font-size: 4rem;
-      margin-bottom: 5px;
-      margin-top: -25px;
-      font-display: bold;
-    }
-
-    .banner-content p {
+      font-size: 3.5rem;
       margin-bottom: 15px;
-      margin-left: 190px;
-      margin-right: 190px;
-      font-size: 1.5rem;
-      text-align: center;
+      margin-top: -30px;
     }
-
+    .banner-content p {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      margin-top: -20px;
+    }
     .search-bar {
+      position: relative;
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin-bottom: 35px;
+      gap: 0;
+      max-width: 500px;
+      margin: 0 auto 30px;
     }
-
     .search-bar input {
-      padding: 15px;
-      width: 1000px;
-      max-width: 80%;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      width: 100%;
+      max-width: 420px;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      font-size: 1rem;
     }
-
     .search-bar button {
-      padding: 8px 12px;
-      background-color: #000000;
+      padding: 15px 25px;
+      background: #000;
       color: #fff;
-      border: none;
-      border-radius: 5px;
+      border-radius: 0 8px 8px 0;
     }
-
     .btn-donggop {
-      padding: 20px 40px;
-      background-color: #333;
+      padding: 18px 40px;
+      background: #333;
       color: #fff;
-      border: none;
-      border-radius: 15px;
-      font-size: 2rem;
-      margin-top: 10px;
-      margin-bottom: -20px;
-    }
-
-    /* ===== Categories ===== */
-    .categories {
-      padding: 10px;
-    }
-
-    .categories-header {
-      font-size: 1.2rem;
+      border-radius: 50px;
+      font-size: 1.8rem;
       font-weight: bold;
-      margin-bottom: 10px;
+      transition: 0.3s;
+      margin-bottom: -40px;
     }
+    .btn-donggop:hover { background: #555; }
 
-    .categories ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+   /* ====================== SUGGESTIONS – CĂN TRÁI HOÀN HẢO ====================== */
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;                    /* đổi từ left:50% + transform thành left:0 */
+  right: auto;
+  transform: none;            /* bỏ transform */
+  width: 100%;                /* vẫn full chiều rộng của input */
+  max-width: 420px;           /* bằng với max-width của input */
+  background: #000;
+  border: 2px solid #333;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  max-height: 380px;
+  overflow-y: auto;
+  z-index: 300;
+  display: none;
+}
 
-    .categories li {
-      background-color: #eee;
-      padding: 10px;
-      border-radius: 5px;
-      flex: 1 1 45%;
-      text-align: center;
-    }
+/* Tùy chỉnh từng dòng gợi ý cho đẹp hơn */
+.suggestions div {
+  padding: 16px 20px;
+  color: #fff;
+  font-size: 1.4rem;         /* to rõ, dễ đọc */
+  border-bottom: 1px solid #333;
+  transition: background 0.2s;
+}
+.suggestions div:last-child { border-bottom: none; }
+.suggestions div:hover { background: #1a1a1a; }
 
-    /* ===== Footer ===== */
+/* Phần được tìm kiếm nổi bật màu hồng */
+.highlight {
+  background: #ff1493;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* ==================== COMMENT SECTION – ĐẸP NHƯ ẢNH ==================== */
+.comment-section {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  margin-top: 15px;
+}
+
+.comment-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  border: 2.5px solid #000000;
+  margin-bottom: -20px;
+}
+
+.comment-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 3px;
+background: linear-gradient(135deg, #ff69b4, #ec4899);
+
+/* WebKit (Chrome, Safari) */
+-webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+
+/* Chuẩn (Firefox, Edge) */
+mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+mask-composite: exclude; /* 'exclude' tương đương với xor trong chuẩn CSS */
+
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.comment-box h2 {
+  font-size: 1.7rem;
+  color: #333;
+  margin-bottom: 8px;
+  margin-top: -30px;
+}
+
+.comment-box .note {
+  color: #777;
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+  margin-top: -10px;
+}
+
+
+
+.required {
+  color: #ec4899;
+}
+
+.comment-box textarea {
+  width: 100%;
+  height: 160px;
+  padding: 16px 18px;
+  border: 2.5px solid #ff69b4;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: none;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #fff;
+}
+
+.comment-box textarea:focus {
+  border-color: #ec4899;
+  box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.15);
+}
+
+.submit-btn {
+  margin-top: 20px;
+  background: #1a1a1a;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 14px 32px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.submit-btn:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.status-msg {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #ec4899;
+}
+
+    /* ====================== FOOTER ====================== */
     .footer {
+      background: #222;
+      color: #ddd;
       text-align: center;
-      padding: 15px;
-      background-color: #333;
-      color: #fff;
+      padding: 20px;
+      font-size: 1.1rem;
+      font-style: bold;
     }
 
-    /* ===== Responsive ===== */
-    @media (max-width: 768px) {
-      .nav {
-        display: none;
-        flex-direction: column;
-        background-color: #333;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        padding: 10px;
-      }
-
-      .nav a {
-        padding: 10px 0;
-      }
-
-      .nav.nav-active {
-        display: flex;
-      }
-
-      .mobile-menu {
-        display: block;
-      }
-
-      .categories ul {
-        flex-direction: column;
-      }
+    /* ====================== CARD HIGHLIGHT ====================== */
+    @keyframes cardBlink {
+      0%,100% { box-shadow: 0 0 0 transparent; }
+      50% { box-shadow: 0 0 25px #ff1493; transform: scale(1.03); }
     }
+    .card-highlight { animation: cardBlink 0.8s ease 4; }
   </style>
 </head>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const highlight = params.get("highlight");
-  if (!highlight) return;
-
-  const cards = document.querySelectorAll(".doc-card");
-
-  cards.forEach(card => {
-    const titleElement = card.querySelector(".doc-title");
-
-    if (titleElement && titleElement.innerText.toLowerCase().includes(highlight.toLowerCase())) {
-
-      // Cuộn vào giữa màn hình
-      card.scrollIntoView({ behavior: "smooth", block: "center" });
-
-      // Thêm hiệu ứng nhấp nháy
-      card.classList.add("card-highlight");
-
-      // Tự tắt sau 4 giây
-      setTimeout(() => {
-        card.classList.remove("card-highlight");
-      }, 4000);
-    }
-  });
-});
-</script>
-
-<script src="highlight.js"></script>
 <body>
 
- <!-- Header -->
-<header class="header">
-  <div class="header-container">
-    <!-- Logo link tới index.html -->
-    <h1 class="logo">
-      <a href="index.html">TAILIEUTX1</a>
-    </h1>
-
-    <!-- Menu -->
-    <nav class="nav">
-      <a href="daicuong.html" class="nav-button">Đại cương</a>
-      <a href="chuyennganh.html" class="nav-button">Chuyên ngành</a>
-      <a href="tienganh.html" class="nav-button">Tiếng anh</a>
-      <a href="phanmem.html" class="nav-button">Phần mềm</a>
-      <a href="tudien.html" class="nav-button">Từ điển</a>
-    </nav>
-
-    <!-- Nút menu di động -->
-    <button class="mobile-menu">☰</button>
-  </div>
-</header>
-
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <h1 class="logo"><a href="index.html">TAILIEUTX1</a></h1>
+      <nav class="nav">
+        <a href="daicuong.html">Đại cương</a>
+        <a href="chuyennganh.html">Chuyên ngành</a>
+        <a href="tienganh.html">Tiếng anh</a>
+        <a href="phanmem.html">Phần mềm</a>
+        <a href="tudien.html">Từ điển</a>
+      </nav>
+      <button class="mobile-menu">☰</button>
+    </div>
+  </header>
 
   <!-- Banner -->
   <section id="banner">
     <div class="banner-content">
       <h1>TÀI LIỆU TX1</h1>
-      <p>
-        Tài liệu TX1 chuyên chia sẻ tài liệu đại cương, cơ sở ngành, chuyên ngành, tiếng anh và phần mềm miễn phí dành cho sinh viên ngành Công nghệ Dệt may. Tuy nhiên, mình đã ra trường và kiến thức cũng thay đổi rất nhiều rồi, nên mong các bạn có tài liệu nào hay thì cho mình xin nhé.
-      </p>
-      <div class="search-bar" style="position: relative;">
+      <p>Tài liệu TX1 chuyên chia sẻ tài liệu đại cương, cơ sở ngành, chuyên ngành, tiếng anh và phần mềm miễn phí dành cho sinh viên ngành Công nghệ Dệt may. Mong các bạn đóng góp để kho tài liệu ngày càng phong phú!</p>
+      
+      <div class="search-bar">
         <input type="text" placeholder="Tìm kiếm tài liệu..." id="searchInput">
         <button id="searchBtn">Tìm kiếm</button>
-        <div id="suggestions" class="suggestions"></div> <!-- bắt buộc phải ở đây -->
+        <div id="suggestions" class="suggestions"></div>
       </div>
-      
-<a class="btn-donggop" href="https://drive.google.com/drive/folders/1TTlAS8UO6iCVI7C5nVIpS9qz3DPvR1tD" target="_blank">
-  Đóng góp tài liệu →
-</a>
 
+      <button class="btn-donggop" onclick="window.location.href='https://drive.google.com/drive/folders/1TTlAS8UO6iCVI7C5nVIpS9qz3DPvR1tD?usp=sharing'">
+        Đóng góp tài liệu
+      </button>
     </div>
   </section>
 
-<!-- Comment Section -->
+<!-- ==================== COMMENT SECTION – PHIÊN BẢN ĐẸP NHƯ ẢNH ==================== -->
 <section class="comment-section">
-  <h2>Hòm thư góp ý</h2>
-  <p>Your email address will not be published. Required fields are marked *</p>
+  <div class="comment-box">
+    <h2>Hòm thư góp ý</h2>
+    <p class="note">Your email address will not be published. Required fields are marked *</p>
 
-  <form id="feedbackForm" class="comment-form" action="https://formspree.io/f/mwpgqnwy" method="POST">
-    <label for="content">Nội dung góp ý *</label>
-    <textarea id="content" name="content" placeholder="Bạn muốn góp ý điều gì?" required></textarea>
+    <form id="feedbackForm" action="https://formspree.io/f/mwpgqnwy" method="POST">
+      
+      <textarea 
+        name="content" 
+        id="content" 
+        placeholder="Bạn muốn góp ý điều gì?" 
+        required
+      ></textarea>
 
-    <button class="post-comment" type="submit">POST COMMENT</button>
-  </form>
+      <button type="submit" class="submit-btn">POST COMMENT</button>
+    </form>
 
-  <p id="status" style="margin-top:10px; font-weight:bold;"></p>
+    <p id="status" class="status-msg"></p>
+  </div>
 </section>
-<script>
-document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
-    e.preventDefault(); // ❗ Không cho reload / chuyển trang
-
-    const form = e.target;
-    const status = document.getElementById("status");
-
-    // Lấy dữ liệu form
-    const data = new FormData(form);
-
-    // Gửi bằng fetch API (AJAX)
-    try {
-        const response = await fetch(form.action, {
-            method: "POST",
-            body: data,
-            headers: {
-                "Accept": "application/json"
-            }
-        });
-
-        if (response.ok) {
-            status.innerHTML = "✔ Gửi góp ý thành công! Cảm ơn bạn ❤️";
-            form.reset(); // Xoá nội dung
-        } else {
-            status.innerHTML = "❌ Gửi thất bại. Vui lòng thử lại.";
-        }
-    } catch (error) {
-        status.innerHTML = "❌ Có lỗi khi gửi.";
-    }
-});
-</script>
-
-
-
-
-
   <!-- Footer -->
   <footer class="footer">
     <p>Since 2025 © Developed by Nguyễn Thu Trang</p>
   </footer>
 
-  <!-- JS Menu Mobile -->
+  <!-- JS: Mobile Menu + Search + Form -->
   <script>
-    const mobileMenuBtn = document.querySelector('.mobile-menu');
-    const nav = document.querySelector('.nav');
-
-    mobileMenuBtn.addEventListener('click', () => {
-      nav.classList.toggle('nav-active');
+    // Mobile menu toggle
+    document.querySelector('.mobile-menu').addEventListener('click', () => {
+      document.querySelector('.nav').classList.toggle('nav-active');
     });
-  </script>
-</body>
-<style>
-  .suggestions {
-  position: absolute;
-  top: 100%;
-  left: 189px;
-  width: 68%;
-  background-color: #030000;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 50px 70px rgba(0,0,0,0.15);
-  z-index: 100;
-  display: none;
-  overflow: hidden;
-  font-size: 2rem;
-}
 
-.suggestions div {
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
+    // Feedback form
+    document.getElementById("feedbackForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const status = document.getElementById("status");
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, { method: "POST", body: data, headers: {"Accept": "application/json"} });
+        if (res.ok) {
+          status.innerHTML = "Gửi góp ý thành công! Cảm ơn bạn ❤️";
+          form.reset();
+        } else status.innerHTML = "Gửi thất bại. Thử lại nhé!";
+      } catch { status.innerHTML = "Có lỗi xảy ra."; }
+    });
 
-.suggestions div:hover {
-  background-color: #f0f0f0;
-}
+    // ====================== TÌM KIẾM + GỢI Ý ======================
+    const searchInput = document.getElementById('searchInput');
+    const suggestionsDiv = document.getElementById('suggestions');
 
-.highlight {
-  background-color: #df14ba; /* vàng sáng, đẹp hơn */
-  font-weight: bold;
-}
-
-</style>
-
-<script>
-const searchInput = document.getElementById('searchInput');
-const searchBtn = document.getElementById('searchBtn');
-const suggestionsDiv = document.getElementById('suggestions');
-
-// Bảng từ khóa → trang
+    // Bảng từ khóa → trang
 const searchMap = [
   // triết học
   { keywords: ["EM1170 Pháp luật đại cương"], page: "triet.html" },
@@ -522,105 +514,76 @@ const searchMap = [
   { keywords: ["TEX4096 Tín học ứng dụng trong thiết kế vải"], page: "thietkevaidetmay.html" },
 ];
 
-// Tìm các gợi ý khớp 1 phần với input
-function getSuggestions(query) {
-  query = query.toLowerCase();
-  const results = [];
-  for (let item of searchMap) {
-    for (let kw of item.keywords) {
-      if (kw.toLowerCase().includes(query) && !results.some(r => r.keyword === kw)) {
-        results.push({ keyword: kw, page: item.page });
+    function getSuggestions(q) {
+      q = q.toLowerCase().trim();
+      const res = [];
+      for (let item of searchMap) {
+        for (let kw of item.keywords) {
+          if (kw.toLowerCase().includes(q) && !res.some(r => r.keyword === kw)) {
+            res.push({ keyword: kw, page: item.page });
+          }
+        }
       }
+      return res;
     }
-  }
-  return results;
-}
 
-// Highlight phần chữ khớp
-function highlightMatch(text, query) {
-  const regex = new RegExp(`(${query})`, "gi");
-  return text.replace(regex, '<span class="highlight">$1</span>');
-}
+    function highlightMatch(text, query) {
+      const regex = new RegExp(`(${query.trim()})`, "gi");
+      return text.replace(regex, '<span class="highlight">$1</span>');
+    }
 
-// Hiển thị gợi ý khi gõ
-searchInput.addEventListener('input', () => {
-  const query = searchInput.value.trim();
-  if (!query) {
-    suggestionsDiv.style.display = 'none';
-    return;
-  }
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim();
+      if (!q) { suggestionsDiv.style.display = 'none'; return; }
+      const results = getSuggestions(q);
+      if (!results.length) { suggestionsDiv.style.display = 'none'; return; }
 
-  const results = getSuggestions(query);
-  if (results.length === 0) {
-    suggestionsDiv.style.display = 'none';
-    return;
-  }
-
-  suggestionsDiv.innerHTML = '';
-  results.forEach(r => {
-    const div = document.createElement('div');
-    div.innerHTML = highlightMatch(r.keyword, query); // highlight
-    div.addEventListener('click', () => {
-      window.location.href = `${r.page}?highlight=${encodeURIComponent(r.keyword)}`;
+      suggestionsDiv.innerHTML = '';
+      results.forEach(r => {
+        const div = document.createElement('div');
+        div.innerHTML = highlightMatch(r.keyword, q);
+        div.onclick = () => location.href = `${r.page}?highlight=${encodeURIComponent(r.keyword)}`;
+        suggestionsDiv.appendChild(div);
+      });
+      suggestionsDiv.style.display = 'block';
     });
-    suggestionsDiv.appendChild(div);
-  });
 
-  suggestionsDiv.style.display = 'block';
-});
+    // Enter → đi thẳng đến kết quả đầu tiên
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const results = getSuggestions(searchInput.value);
+        if (results.length > 0) {
+          location.href = `${results[0].page}?highlight=${encodeURIComponent(results[0].keyword)}`;
+        } else {
+          alert("Không tìm thấy tài liệu phù hợp!");
+        }
+      }
+    });
 
-// Nhấn tìm kiếm hoặc Enter
-function handleSearch() {
-  const query = searchInput.value.trim().toLowerCase();
-  if (!query) {
-    alert("Vui lòng nhập từ khóa tìm kiếm!");
-    return;
-  }
+    // Click ngoài → ẩn gợi ý
+    document.addEventListener('click', e => {
+      if (!searchInput.contains(e.target) && !suggestionsDiv.contains(e.target)) {
+        suggestionsDiv.style.display = 'none';
+      }
+    });
 
-  const match = searchMap.find(item => item.keywords.some(kw => kw.toLowerCase() === query));
-  if (match) {
-    window.location.href = match.page;
-  } else {
-    alert("Không tìm thấy kết quả phù hợp!");
-  }
-}
+    
 
-searchBtn.addEventListener('click', handleSearch);
-searchInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') handleSearch();
-});
-
-// Ẩn gợi ý khi click ra ngoài
-document.addEventListener('click', (e) => {
-  if (!searchInput.contains(e.target) && !suggestionsDiv.contains(e.target)) {
-    suggestionsDiv.style.display = 'none';
-  }
-});
-
-// ======= Xử lý ENTER để chuyển tới trang gần đúng nhất =======
-searchInput.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") {
-    e.preventDefault(); // tránh reload
-
-    const query = searchInput.value.trim().toLowerCase();
-    if (!query) return;
-
-    // Lấy danh sách gợi ý phù hợp
-    const suggestions = getSuggestions(query);
-
-    if (suggestions.length > 0) {
-      // Lấy gợi ý khớp nhất (gợi ý đầu tiên)
-      const bestMatch = suggestions[0];
-
-      // Chuyển trang
-      window.location.href = `${bestMatch.page}?highlight=${encodeURIComponent(bestMatch.keyword)}`;
-    } else {
-      alert("❌ Không tìm thấy tài liệu phù hợp!");
-    }
-  }
-});
-
-</script>
-
-
+    // Highlight khi vào trang từ tìm kiếm
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(location.search);
+      const highlight = params.get("highlight");
+      if (!highlight) return;
+      document.querySelectorAll(".doc-card, .subject-card").forEach(card => {
+        const title = card.querySelector(".doc-title, .subject-title");
+        if (title && title.textContent.toLowerCase().includes(highlight.toLowerCase())) {
+          card.scrollIntoView({ behavior: "smooth", block: "center" });
+          card.classList.add("card-highlight");
+          setTimeout(() => card.classList.remove("card-highlight"), 4000);
+        }
+      });
+    });
+  </script>
+</body>
 </html>

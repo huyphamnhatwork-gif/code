@@ -43,29 +43,28 @@
   }
   
  /* ===== Header Nâng cấp ===== */
-.header {
-  background: linear-gradient(90deg, #d60ca4, #cd099c);
+header {
+ background: linear-gradient(90deg, #d60ca4, #cd099c);
   color: #fff;
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
 }
 
 .header-container {
-  display: flex;
+ display: flex;
+  justify-content: space-between; /* Logo trái, menu/hamburger phải */
   align-items: center;
-  padding: 15px 25px;
-  gap: 20px;
+  padding: 10px 20px;
+  gap: 15px;
 }
 
-.nav {
-  display: flex;
-  justify-content: space-evenly; /* Căn đều các link */
-  align-items: center;
-  flex: 1; /* Chiếm toàn bộ khoảng trống giữa logo và nút mobile */
-  gap: 0; /* Không cần gap nữa, đã dùng space-evenly */
+.logo a {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  text-decoration: none;
 }
 
 
@@ -81,15 +80,28 @@
 .nav {
   display: flex;
   gap: 15px;
+  
 }
 
 .nav a {
-  color: #fff;
-  padding: 10px 20px;      /* menu to hơn */
-  border-radius: 8px;
-  transition: 0.3s;
-  font-weight: 700;         /* bold */
-  font-size: 1.1rem;        /* to hơn trước */
+  width: 135px;                  /* ĐỘ RỘNG CỐ ĐỊNH – bạn có thể đổi thành 140px nếu muốn rộng hơn */
+  height: 48px;
+  background: rgba(240, 3, 220, 0.877);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(228, 25, 160, 0.979);
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+
+  transition: all 0.3s ease;
 }
 
 
@@ -111,11 +123,12 @@
 }
 
 .mobile-menu {
-  display: none;
-  font-size: 1.8rem;
+ display: none;
+  font-size: 2rem;
   background: none;
   border: none;
   color: #fff;
+  cursor: pointer;
   transition: transform 0.3s;
 }
 
@@ -124,31 +137,7 @@
 }
 
 /* ===== Responsive ===== */
-@media (max-width: 768px) {
-  .nav {
-    display: none;
-    flex-direction: column;
-    background-color: rgba(51,51,51,0.95);
-    position: absolute;
-    top: 65px;
-    right: 0;
-    width: 220px;
-    padding: 15px;
-    border-radius: 0 0 10px 10px;
-  }
 
-  .nav a {
-    padding: 12px;
-  }
-
-  .nav.nav-active {
-    display: flex;
-  }
-
-  .mobile-menu {
-    display: block;
-  }
-}
 
   
   /* ========================== */
@@ -166,21 +155,10 @@
     margin-bottom: 20px;
   }
   
-  .banner-content p {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
   
-  .search-bar {
-    margin-bottom: 20px;
-  }
   
-  .search-bar input {
-    padding: 10px;
-    width: 250px;
-    border: none;
-    border-radius: 6px 0 0 6px;
-  }
+ 
+
   
   .search-bar button {
     padding: 10px 15px;
@@ -273,95 +251,8 @@
     z-index: 200;
   }
   
-  /* ========================== */
-  /* Responsive                  */
-  /* ========================== */
-  @media (max-width: 768px) {
-    .nav { display: none; }
-    .mobile-menu { display: block; }
-  }
-  /* ===== Responsive Mobile ===== */
-@media (max-width: 768px) {
-  /* Header */
-  .header-container {
-    flex-wrap: wrap;
-    padding: 10px 15px;
-    gap: 10px;
-  }
+ 
 
-  .nav {
-    flex-direction: column;
-    position: absolute;
-    top: 65px;
-    right: 0;
-    width: 100%;
-    background-color: rgba(51,51,51,0.95);
-    padding: 10px 0;
-    border-radius: 0 0 10px 10px;
-    display: none;
-    z-index: 100;
-  }
-
-  .nav.nav-active {
-    display: flex;
-  }
-
-  .nav a {
-    padding: 12px 20px;
-    font-size: 1rem;
-    text-align: left;
-  }
-
-  .mobile-menu {
-    display: block;
-  }
-
-  /* Banner */
-  #banner {
-    padding: 30px 15px;
-    text-align: center;
-  }
-
-  .banner-content h1 {
-    font-size: 2rem;
-  }
-
-  .banner-content p {
-    font-size: 1rem;
-    margin: 10px 10px 15px 10px;
-  }
-
-  .search-bar {
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-
-  .search-bar input,
-  .search-bar button {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .btn-donggop {
-    width: 100%;
-    padding: 12px;
-    font-size: 2rem;
-  }
-
-  /* Categories */
-  .categories {
-    margin: 20px 10px;
-  }
-
-  .categories ul {
-    flex-direction: column;
-  }
-
-  .categories ul li {
-    margin-bottom: 10px;
-  }
-}
 /* Comment section */
 .comment-section {
   max-width: 900px;
@@ -437,50 +328,7 @@
   background: #991b1b;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .row {
-    flex-direction: column;
-  }
-}
-.comment-section {
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 20px;
-  background: #f7f7f7;
-  border-radius: 10px;
-}
 
-.comment-form label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-
-.comment-form input,
-.comment-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 6px;
-  border: 1px solid #ff00bf;
-  font-size: 15px;
-}
-
-.post-comment {
-  margin-top: -5px;
-  margin-bottom: -20px;
-  padding: 12px;
-  background: #030213;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.post-comment:hover {
-  opacity: 0.85;
-}
 /* Hiệu ứng nhấp nháy highlight */
 .blink-highlight {
   animation: blink 0.7s ease-in-out 4;
@@ -504,13 +352,33 @@
   50% { box-shadow: 0 0 20px #ff00c8; transform: scale(1.02); }
   100% { box-shadow: 0 0 0px #ff00c8; transform: scale(1); }
 }
-/* Hiệu ứng highlight toàn bộ thẻ card */
-.card-highlight {
-  animation: cardBlink 0.8s ease-in-out 4;
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(90deg, #ff5efd, #5e11ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 18px;
+    z-index: 1000;
+    box-sizing: border-box;
 }
 
-@keyframes cardBlink {
-  0% { box-shadow: 0 0 0px #ff00c8; transform: scale(1); }
-  50% { box-shadow: 0 0 20px #ff00c8; transform: scale(1.02); }
-  100% { box-shadow: 0 0 0px #ff00c8; transform: scale(1); }
+.logo {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.mobile-menu {
+    position: absolute;
+    right: max(15px, env(safe-area-inset-right));
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
 }
